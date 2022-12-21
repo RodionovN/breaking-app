@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
@@ -18,8 +18,22 @@ const App: React.FC = () => (
       </ul>
     </nav>
     <Routes>
-      <Route index element={<Home />} />
-      <Route path="/about" element={<About />} />
+      <Route
+        index
+        element={
+          <React.Suspense fallback={<>...</>}>
+            <Home />
+          </React.Suspense>
+        }
+      />
+      <Route
+        path="/about"
+        element={
+          <React.Suspense fallback={<>...</>}>
+            <About />
+          </React.Suspense>
+        }
+      />
     </Routes>
   </Router>
 );
